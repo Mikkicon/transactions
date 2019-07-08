@@ -1,0 +1,62 @@
+Создать 4 модели в mongoose:
+
+User {
+  userid: Number,
+  balance: Number,
+}
+
+Shop {
+  link: String,
+  name: String,
+  balance: Number
+}
+
+Transaction {
+  _user: BSON,
+  _shop: BSON,
+  created: Date,
+  sumTransaction: Number
+}
+
+Confirmation {
+  _user: BSON,
+  _transaction: BSON,
+  code: String,
+  status: Number, (0 в ожидании, 1 использован)
+}
+
+Заполнить 3-4 магазина.
+Создать 1-ого пользователя
+
+GET /shops
+Через pug показать страницу со всеми магазинами. Без стилей.
+
+GET /shops/{link}
+Найти в базе магазин по {link} и показать по нему информацию.
+Добавить в render форму
+
+----------------
+userid
+----------------
+Сумма оплаты
+----------------
+     Оплатить
+
+При нажатии на "Оплатить" ->
+
+ajax POST /shops/{link}/transaction
+Проверяем баланс пользователя,
+Создаем Transaction со статусом 0.
+Создаем Confirmation с рандомной строкой (6 символов)
+
+В случае успеха заменяем форму на
+----------------
+Код
+----------------
+  Подтвердить
+
+При нажатии на "Подтвердить" ->
+POST /shops/{link}/transaction/{code}
+Проверяем существует ли такой код.
+У пользователя отнимаем баланс, магазину начисляем.
+Меняем статус на 1.

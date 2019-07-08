@@ -1,0 +1,38 @@
+html
+    head
+    body
+        h1= transactionCompleted
+        if shop && shop.length
+            ul
+                each entity in shop
+                    ul
+                        each val, key in entity._doc
+                            li= key + ' : ' + val
+        else if shop 
+            ul
+                each val, key in shop
+                    li= key + ' : ' + val
+            if !confirm
+                form(action="/shops/" + shop.link + "/transaction", method="post")
+                    label userid
+                    input(type="number", name="userid")
+                    br
+                    label Сумма оплаты
+                    input(type="number", name="sum")
+                    input(type="submit", value='"Оплатить"')
+            else 
+                form#form(action="/shops/" + shop.link + "/transaction/", method="post")
+                    label Confirmation code
+                    input#code(type="text")
+                    button(onclick="submitCode()") Подтвердить
+        else 
+            ul
+                li= "other"
+        script.
+            function submitCode() {
+                let url = document.getElementById("form").getAttribute("action");
+                let code = document.getElementById("code").value;
+                url += code;
+                document.getElementById("form").setAttribute("action", url);
+                document.getElementById("form").submit();
+            }
