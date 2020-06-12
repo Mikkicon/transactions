@@ -1,0 +1,24 @@
+{
+  "name": "transactions",
+  "version": "1.0.0",
+  "description": "Pug - NodeJS - Mongoose: transactions by shops; no Styling, just back…",
+  "main": "dbManager.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mikkicon/transactions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mikkicon/transactions/issues"
+  },
+  "homepage": "https://github.com/Mikkicon/transactions#readme",
+  "dependencies": {
+    "minimist": "^1.2.5",
+    "mongoose": "^5.9.18"
+  }
+}
